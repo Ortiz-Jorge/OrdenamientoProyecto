@@ -87,7 +87,7 @@ public class CentralDeAlgoritmos {
 
         System.out.printf("Algoritmo: %s%n", resultados.get(0));
         System.out.printf("Intercambios Realizados: %d%n", resultados.get(2));
-        System.out.printf("Numero de compraciones: ");
+        System.out.printf("Numero de compraciones: %d%n", resultados.get(3));
         System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n", resultados.get(4));
 
         System.out.println("\n==================================\033[0m");
@@ -157,48 +157,52 @@ public class CentralDeAlgoritmos {
 
 
         estadisticas.add("Burbuja Normal");
-        estadisticas.add(vector);
         estadisticas.add(intercambios);
         estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
 
         return estadisticas;
 
-
     }
 
     static List<Object> ordenarPorSeleccionYEstadisticas(){
         List<Object> estadisticas = new ArrayList<>();
-        int[] vector = vectores.get(0);
+        int[] vector = vectores.get(3);
 
         long intercambios = 0;
+        long comparaciones = 0;
         
         long inicio;
         long finalDeEjecucion;
 
-        double promedio;
+        inicio = System.nanoTime();        
 
-        inicio = System.nanoTime();
-        
-   
-        
+        for(int i = 0; i< vector.length; i++){
 
+            int minIndex = i;
+
+            for(int j = i+1; j<vector.length; j++){
+                if(vector[j]<vector[minIndex]){
+                    minIndex = j;
+                }
+            }
+
+            int temp = vector[minIndex];
+            vector[minIndex] = vector[i];
+            vector[i] = temp;
+
+        }
+        
 
         finalDeEjecucion = System.nanoTime();
 
         double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
 
-        int numeroMayor = vector[vector.length-1];
-        int numeroMenor = vector[0];
-        promedio = calcularPromedio(vector);
-
-        estadisticas.add("Burbuja Normal");
+        estadisticas.add("Seleccion");
         estadisticas.add(vector);
         estadisticas.add(intercambios);
+        estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
-        estadisticas.add(numeroMayor);
-        estadisticas.add(numeroMenor);
-        estadisticas.add(promedio);
 
         return estadisticas;
     }
