@@ -87,10 +87,8 @@ public class CentralDeAlgoritmos {
 
         System.out.printf("Algoritmo: %s%n", resultados.get(0));
         System.out.printf("Intercambios Realizados: %d%n", resultados.get(2));
-        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n", resultados.get(3));
-        System.out.printf("Numero Mayor: %d%n", resultados.get(4));
-        System.out.printf("Numero Menor: %d%n", resultados.get(5));
-        System.out.printf("Promedio: %.2f%n", resultados.get(6));
+        System.out.printf("Numero de compraciones: ");
+        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n", resultados.get(4));
 
         System.out.println("\n==================================\033[0m");
 
@@ -132,6 +130,48 @@ public class CentralDeAlgoritmos {
         int[] vector = vectores.get(0);
 
         long intercambios = 0;
+        long comparaciones = 0;
+        
+        long inicio;
+        long finalDeEjecucion;
+
+        inicio = System.nanoTime();
+        
+   
+        for(int i = 0; i < vector.length - 1; i++){
+            for(int j = 0; j < vector.length - 1 - i; j++){
+                comparaciones++;
+                if(vector[j] > vector[j+1]){
+                    int aux = vector[j];
+                    vector[j] = vector[j+1];
+                    vector[j+1] = aux; 
+                    intercambios++;
+                }
+            }
+        }
+
+
+        finalDeEjecucion = System.nanoTime();
+
+        double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
+
+
+        estadisticas.add("Burbuja Normal");
+        estadisticas.add(vector);
+        estadisticas.add(intercambios);
+        estadisticas.add(comparaciones);
+        estadisticas.add(tiempoEnOrdenar);
+
+        return estadisticas;
+
+
+    }
+
+    static List<Object> ordenarPorSeleccionYEstadisticas(){
+        List<Object> estadisticas = new ArrayList<>();
+        int[] vector = vectores.get(0);
+
+        long intercambios = 0;
         
         long inicio;
         long finalDeEjecucion;
@@ -141,16 +181,7 @@ public class CentralDeAlgoritmos {
         inicio = System.nanoTime();
         
    
-        for(int i = 0; i < vector.length - 1; i++){
-            for(int j = 0; j < vector.length - 1 - i; j++){
-                if(vector[j] > vector[j+1]){
-                    int aux = vector[j];
-                    vector[j] = vector[j+1];
-                    vector[j+1] = aux; 
-                    intercambios++;
-                }
-            }
-        }
+        
 
 
         finalDeEjecucion = System.nanoTime();
@@ -170,8 +201,6 @@ public class CentralDeAlgoritmos {
         estadisticas.add(promedio);
 
         return estadisticas;
-
-
     }
     
 }
