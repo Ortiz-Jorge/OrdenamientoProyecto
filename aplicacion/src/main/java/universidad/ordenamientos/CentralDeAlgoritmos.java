@@ -1,9 +1,5 @@
 package universidad.ordenamientos;
 
-/**
- * Hello world!
- *
- */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -85,13 +81,13 @@ public class CentralDeAlgoritmos {
 
         System.out.println("\033[034m\n====================");
         System.out.println("INFORME DE ALGORITMO");
-        System.out.println("====================\n");
+        System.out.println("====================");
 
         System.out.println("\n==================================");
 
         System.out.printf("Algoritmo: %s%n", resultados.get(0));
         System.out.printf("Intercambios Realizados: %d%n", resultados.get(2));
-        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n ", resultados.get(3));
+        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n", resultados.get(3));
         System.out.printf("Numero Mayor: %d%n", resultados.get(4));
         System.out.printf("Numero Menor: %d%n", resultados.get(5));
         System.out.printf("Promedio: %.2f%n", resultados.get(6));
@@ -105,12 +101,12 @@ public class CentralDeAlgoritmos {
         int numero = 0; 
         
         do{
-            System.out.println(mensaje + ": ");
+            System.out.print(mensaje + ": ");
             numero = sc.nextInt();
             sc.nextLine();
 
             if(numero > max || numero < min){
-                System.out.println("\033[033m" + mensajeDeError + "\033[0m");
+                System.out.println("\033[031m" + mensajeDeError + "\033[0m");
             }
 
         }while(numero > max || numero < min);
@@ -175,7 +171,6 @@ public class CentralDeAlgoritmos {
 
         return estadisticas;
 
-         
 
     }
     
