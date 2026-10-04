@@ -15,7 +15,7 @@ public class CentralDeAlgoritmos {
     static List<int[]> vectores =  new ArrayList<>();
     static int[] vectorBase = new int[100_000];
 
-    static void main(){
+    public static void main(String[] args){
 
         iniciarAplicacion();
         
@@ -77,7 +77,7 @@ public class CentralDeAlgoritmos {
                 mostrarEstadisticasDelAlgoritmo(ordenamientoQuickSort);
                 break;
             case 6: 
-                System.out.println("Cerrando aplicacion...");
+                System.out.println("\n\033[034mCerrando aplicacion...\033[0m");
                 break; 
         }
     }
