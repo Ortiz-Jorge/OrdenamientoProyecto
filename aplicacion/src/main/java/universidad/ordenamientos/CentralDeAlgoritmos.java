@@ -1,9 +1,5 @@
 package universidad.ordenamientos;
 
-/**
- * Hello world!
- *
- */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -73,10 +69,12 @@ public class CentralDeAlgoritmos {
                 mostrarEstadisticasDelAlgoritmo(ordenamientoDeInsertion);
                 break;
             case 4:
-                List<Object> ordenamientoDeSeleccion; 
+                List<Object> ordenamientoDeSeleccion = ordenarPorSeleccionYEstadisticas();
+                mostrarEstadisticasDelAlgoritmo(ordenamientoDeSeleccion); 
                 break; 
             case 5: 
-                List<Object> ordenamientoQuickSort;
+                List<Object> ordenamientoQuickSort = ordenarPorQuickSort();
+                mostrarEstadisticasDelAlgoritmo(ordenamientoQuickSort);
                 break;
             case 6: 
                 System.out.println("Cerrando aplicacion...");
@@ -88,16 +86,14 @@ public class CentralDeAlgoritmos {
 
         System.out.println("\033[034m\n====================");
         System.out.println("INFORME DE ALGORITMO");
-        System.out.println("====================\n");
+        System.out.println("====================");
 
         System.out.println("\n==================================");
 
         System.out.printf("Algoritmo: %s%n", resultados.get(0));
         System.out.printf("Intercambios Realizados: %d%n", resultados.get(2));
-        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n ", resultados.get(3));
-        System.out.printf("Numero Mayor: %d%n", resultados.get(4));
-        System.out.printf("Numero Menor: %d%n", resultados.get(5));
-        System.out.printf("Promedio: %.2f%n", resultados.get(6));
+        System.out.printf("Numero de compraciones: %d%n", resultados.get(3));
+        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n", resultados.get(4));
 
         System.out.println("\n==================================\033[0m");
 
@@ -108,12 +104,12 @@ public class CentralDeAlgoritmos {
         int numero = 0; 
         
         do{
-            System.out.println(mensaje + ": ");
+            System.out.print(mensaje + ": ");
             numero = sc.nextInt();
             sc.nextLine();
 
             if(numero > max || numero < min){
-                System.out.println("\033[033m" + mensajeDeError + "\033[0m");
+                System.out.println("\033[031m" + mensajeDeError + "\033[0m");
             }
 
         }while(numero > max || numero < min);
@@ -139,17 +135,17 @@ public class CentralDeAlgoritmos {
         int[] vector = vectores.get(0);
 
         long intercambios = 0;
-
+        long comparaciones = 0;
+        
         long inicio;
         long finalDeEjecucion;
-
-        double promedio;
 
         inicio = System.nanoTime();
 
 
         for(int i = 0; i < vector.length - 1; i++){
             for(int j = 0; j < vector.length - 1 - i; j++){
+                comparaciones++;
                 if(vector[j] > vector[j+1]){
                     int aux = vector[j];
                     vector[j] = vector[j+1];
@@ -164,21 +160,114 @@ public class CentralDeAlgoritmos {
 
         double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
 
-        int numeroMayor = vector[vector.length-1];
-        int numeroMenor = vector[0];
-        promedio = calcularPromedio(vector);
-
         estadisticas.add("Burbuja Normal");
-        estadisticas.add(vector);
         estadisticas.add(intercambios);
+        estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
-        estadisticas.add(numeroMayor);
-        estadisticas.add(numeroMenor);
-        estadisticas.add(promedio);
 
         return estadisticas;
 
-         
+    }
+
+    static List<Object> ordenarPorSeleccionYEstadisticas(){
+        List<Object> estadisticas = new ArrayList<>();
+        int[] vector = vectores.get(3);
+
+        long intercambios = 0;
+        long comparaciones = 0;
+        
+        long inicio;
+        long finalDeEjecucion;
+
+        inicio = System.nanoTime();        
+
+        for(int i = 0; i< vector.length; i++){
+
+            int minIndex = i;
+
+            for(int j = i+1; j<vector.length; j++){
+                comparaciones++;
+                if(vector[j]<vector[minIndex]){
+                    minIndex = j;
+                }
+            }
+
+            int temp = vector[minIndex];
+            vector[minIndex] = vector[i];
+            vector[i] = temp;
+            intercambios++;
+
+        }
+        
+
+        finalDeEjecucion = System.nanoTime();
+
+        double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
+
+        estadisticas.add("Seleccion");
+        estadisticas.add(intercambios);
+        estadisticas.add(comparaciones);
+        estadisticas.add(tiempoEnOrdenar);
+
+        return estadisticas;
+    }
+
+    static List<Object> ordenarPorQuickSort(){
+        List<Object> estadisticas = new ArrayList<>();
+        int[] vector = vectores.get(4);
+
+        long[] estadisticasVector = new long[2];
+        
+        long inicio;
+        long finalDeEjecucion;
+
+        inicio = System.nanoTime();        
+
+        quicksort(vector, 0, vector.length-1, estadisticasVector);
+
+        finalDeEjecucion = System.nanoTime();
+
+        double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
+
+        estadisticas.add("Quick Sort");
+        estadisticas.add(estadisticasVector[1]);
+        estadisticas.add(estadisticasVector[0]);
+        estadisticas.add(tiempoEnOrdenar);
+
+        return estadisticas;
+    }
+
+    static void quicksort(int[] vector, int low, int high, long[] estadisticas){
+        if(low < high){
+            int pi = partition(vector, low,high, estadisticas);
+
+            quicksort(vector, low, pi - 1, estadisticas);
+            quicksort(vector, pi + 1, high, estadisticas);
+        }
+    }
+
+    static int partition(int[] vector, int low, int high, long[] estadisticas){
+       
+        int pivote = vector[high];
+        int i = low - 1;
+
+        for(int j = low; j<high;){
+            estadisticas[0]++;
+            if(vector[j] <= pivote){
+                i++;
+                estadisticas[1]++;
+                int aux = vector[i];
+                vector[i] = vector[j];
+                vector[j] = aux;
+            }
+        }
+
+        estadisticas[1]++;
+        int aux = vector[i+1];
+        vector[i+1] = vector[high];
+        vector[high] = aux;
+
+        return i+1;
 
     }
     static List<Object> ordenamientoDeBurbujaMejoradoYEstadisticas(){
