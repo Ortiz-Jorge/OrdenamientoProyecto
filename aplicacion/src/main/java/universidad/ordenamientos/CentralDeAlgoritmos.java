@@ -259,6 +259,7 @@ public class CentralDeAlgoritmos {
         return i+1;
 
     }
+
     static List<Object> ordenamientoDeBurbujaMejoradoYEstadisticas(){
         List<Object> estadisticas = new ArrayList<>();
         int[] vector = vectores.get(1);
@@ -267,13 +268,14 @@ public class CentralDeAlgoritmos {
 
         long inicio;
         long finalDeEjecucion;
-
+        long comparaciones = 0;
         inicio = System.nanoTime();
 
 
         for(int i = 0; i < vector.length - 1; i++){
             boolean huboIntercambios= false;
             for(int j = 0; j < vector.length - 1 - i; j++){
+                comparaciones++;
                 if(vector[j] > vector[j+1]){
                     int aux = vector[j];
                     vector[j] = vector[j+1];
@@ -294,6 +296,7 @@ public class CentralDeAlgoritmos {
 
         estadisticas.add("Burbuja Mejorado");
         estadisticas.add(intercambios);
+        estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
 
         return estadisticas;
@@ -304,6 +307,7 @@ public class CentralDeAlgoritmos {
         int[] vector = vectores.get(2);
 
         long intercambios = 0;
+        long comparaciones = 0;
 
         long inicio;
         long finalDeEjecucion;
@@ -312,17 +316,19 @@ public class CentralDeAlgoritmos {
         inicio = System.nanoTime();
 
 
-       for(int i=1; i<vector.length;i++){
-           int actual= vector[i];
-           int j= i-1;
-           while(j>=0 && vector[j]> actual){
-               vector[j+1]= vector[j];
-               j--;
-               intercambios++;
-           }
-           vector[j+1]= actual;
-
-       }
+        for(int i=1; i<vector.length;i++){
+            int actual= vector[i];
+            int j= i-1;
+            
+            while(j>=0 && vector[j]> actual){
+                comparaciones++;
+                vector[j+1]= vector[j];
+                j--;
+                intercambios++;
+            }
+            comparaciones++;
+            vector[j+1]= actual;
+        }
 
         finalDeEjecucion = System.nanoTime();
 
@@ -330,6 +336,7 @@ public class CentralDeAlgoritmos {
 
         estadisticas.add("Insertion");
         estadisticas.add(intercambios);
+        estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
 
 
