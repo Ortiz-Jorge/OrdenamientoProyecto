@@ -28,6 +28,7 @@ public class CentralDeAlgoritmos {
     static void cargarVectores(){
         for(int i = 0; i<vectorBase.length; i++){
             vectorBase[i] = random.nextInt(1, 200_000);
+
         }
 
         for(int i = 0; i<5; i++){
@@ -64,10 +65,12 @@ public class CentralDeAlgoritmos {
                 mostrarEstadisticasDelAlgoritmo(ordenamientoDeBurbujaNormal);
                 break;
             case 2: 
-                List<Object> ordenamientoDeBurbujaMejorado;
+                List<Object> ordenamientoDeBurbujaMejorado=  ordenamientoDeBurbujaMejoradoYEstadisticas();
+                mostrarEstadisticasDelAlgoritmo(ordenamientoDeBurbujaMejorado);
                 break; 
             case 3: 
-                List<Object> ordenamientoDeInsertion;
+                List<Object> ordenamientoDeInsertion= ordenamientoDeInsertionYEstadistica();
+                mostrarEstadisticasDelAlgoritmo(ordenamientoDeInsertion);
                 break;
             case 4:
                 List<Object> ordenamientoDeSeleccion; 
@@ -136,21 +139,21 @@ public class CentralDeAlgoritmos {
         int[] vector = vectores.get(0);
 
         long intercambios = 0;
-        
+
         long inicio;
         long finalDeEjecucion;
 
         double promedio;
 
         inicio = System.nanoTime();
-        
-   
+
+
         for(int i = 0; i < vector.length - 1; i++){
             for(int j = 0; j < vector.length - 1 - i; j++){
                 if(vector[j] > vector[j+1]){
                     int aux = vector[j];
                     vector[j] = vector[j+1];
-                    vector[j+1] = aux; 
+                    vector[j+1] = aux;
                     intercambios++;
                 }
             }
@@ -178,5 +181,109 @@ public class CentralDeAlgoritmos {
          
 
     }
+    static List<Object> ordenamientoDeBurbujaMejoradoYEstadisticas(){
+        List<Object> estadisticas = new ArrayList<>();
+        int[] vector = vectores.get(1);
+
+        long intercambios = 0;
+
+        long inicio;
+        long finalDeEjecucion;
+
+        double promedio;
+
+
+        inicio = System.nanoTime();
+
+
+        for(int i = 0; i < vector.length - 1; i++){
+            boolean huboIntercambios= false;
+            for(int j = 0; j < vector.length - 1 - i; j++){
+                if(vector[j] > vector[j+1]){
+                    int aux = vector[j];
+                    vector[j] = vector[j+1];
+                    vector[j+1] = aux;
+                    intercambios++;
+                    huboIntercambios= true;
+                }
+            }
+            if(!huboIntercambios){
+                break;
+            }
+        }
+
+
+        finalDeEjecucion = System.nanoTime();
+
+        double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
+
+        int numeroMayor = vector[vector.length-1];
+        int numeroMenor = vector[0];
+        promedio = calcularPromedio(vector);
+
+        estadisticas.add("Burbuja Mejorado");
+        estadisticas.add(vector);
+        estadisticas.add(intercambios);
+        estadisticas.add(tiempoEnOrdenar);
+        estadisticas.add(numeroMayor);
+        estadisticas.add(numeroMenor);
+        estadisticas.add(promedio);
+
+        return estadisticas;
+
+    }
+    static List<Object> ordenamientoDeInsertionYEstadistica(){
+        List<Object> estadisticas = new ArrayList<>();
+        int[] vector = vectores.get(2);
+
+        long intercambios = 0;
+        // La variable para este metodo de ordenamiento podria cambiarse a deplazamiento o insertacion
+        // dado que en este metodo no se hace una comparaccion o intercambio es decir a 1 asignacion en la memoria
+        // por lo que no se usa la variable "aux"
+
+        long inicio;
+        long finalDeEjecucion;
+
+        double promedio;
+
+
+        inicio = System.nanoTime();
+
+
+       for(int i=1; i<vector.length;i++){
+           int actual= vector[i];
+           int j= i-1;
+           while(j>=0 && vector[j]> actual){
+               vector[j+1]= vector[j];
+               j--;
+               intercambios++;
+           }
+           vector[j+1]= actual;
+
+       }
+
+
+
+        finalDeEjecucion = System.nanoTime();
+
+        double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
+
+        int numeroMayor = vector[vector.length-1];
+        int numeroMenor = vector[0];
+        promedio = calcularPromedio(vector);
+
+        estadisticas.add("Insertion");
+        estadisticas.add(vector);
+        estadisticas.add(intercambios);
+        estadisticas.add(tiempoEnOrdenar);
+        estadisticas.add(numeroMayor);
+        estadisticas.add(numeroMenor);
+        estadisticas.add(promedio);
+
+        return estadisticas;
+
+    }
+
+
     
 }
