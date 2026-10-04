@@ -118,17 +118,6 @@ public class CentralDeAlgoritmos {
 
     }
 
-    static double calcularPromedio(int[] vector){
-
-        double suma = 0;
-
-        for(int i = 0; i<vector.length; i++){
-            suma += vector[i];
-        }
-
-        return suma/vector.length;
-    }
-
     static List<Object> ordenarPorBurbujaNormalYEstadisticas(){
 
         List<Object> estadisticas = new ArrayList<>();
