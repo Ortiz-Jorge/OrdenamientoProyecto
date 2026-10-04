@@ -88,9 +88,9 @@ public class CentralDeAlgoritmos {
         System.out.println("\n==================================");
 
         System.out.printf("Algoritmo: %s%n", resultados.get(0));
-        System.out.printf("Intercambios Realizados: %d%n", resultados.get(2));
-        System.out.printf("Numero de compraciones: %d%n", resultados.get(3));
-        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n", resultados.get(4));
+        System.out.printf("Intercambios Realizados: %d%n", resultados.get(1));
+        System.out.printf("Numero de compraciones: %d%n", resultados.get(2));
+        System.out.printf("Tiempo en Ordenar el vector (ms): %.2f%n", resultados.get(3));
 
         System.out.println("\n==================================\033[0m");
 
@@ -248,7 +248,7 @@ public class CentralDeAlgoritmos {
         int pivote = vector[high];
         int i = low - 1;
 
-        for(int j = low; j<high;){
+        for(int j = low; j<high; j++){
             estadisticas[0]++;
             if(vector[j] <= pivote){
                 i++;
