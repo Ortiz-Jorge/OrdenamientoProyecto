@@ -268,9 +268,6 @@ public class CentralDeAlgoritmos {
         long inicio;
         long finalDeEjecucion;
 
-        double promedio;
-
-
         inicio = System.nanoTime();
 
 
@@ -295,17 +292,9 @@ public class CentralDeAlgoritmos {
 
         double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
 
-        int numeroMayor = vector[vector.length-1];
-        int numeroMenor = vector[0];
-        promedio = calcularPromedio(vector);
-
         estadisticas.add("Burbuja Mejorado");
-        estadisticas.add(vector);
         estadisticas.add(intercambios);
         estadisticas.add(tiempoEnOrdenar);
-        estadisticas.add(numeroMayor);
-        estadisticas.add(numeroMenor);
-        estadisticas.add(promedio);
 
         return estadisticas;
 
@@ -315,14 +304,9 @@ public class CentralDeAlgoritmos {
         int[] vector = vectores.get(2);
 
         long intercambios = 0;
-        // La variable para este metodo de ordenamiento podria cambiarse a deplazamiento o insertacion
-        // dado que en este metodo no se hace una comparaccion o intercambio es decir a 1 asignacion en la memoria
-        // por lo que no se usa la variable "aux"
 
         long inicio;
         long finalDeEjecucion;
-
-        double promedio;
 
 
         inicio = System.nanoTime();
@@ -340,23 +324,14 @@ public class CentralDeAlgoritmos {
 
        }
 
-
-
         finalDeEjecucion = System.nanoTime();
 
         double tiempoEnOrdenar = (finalDeEjecucion - inicio)/1_000_000.0;
 
-        int numeroMayor = vector[vector.length-1];
-        int numeroMenor = vector[0];
-        promedio = calcularPromedio(vector);
-
         estadisticas.add("Insertion");
-        estadisticas.add(vector);
         estadisticas.add(intercambios);
         estadisticas.add(tiempoEnOrdenar);
-        estadisticas.add(numeroMayor);
-        estadisticas.add(numeroMenor);
-        estadisticas.add(promedio);
+
 
         return estadisticas;
 
