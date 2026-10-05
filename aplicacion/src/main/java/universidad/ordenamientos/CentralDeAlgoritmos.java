@@ -24,7 +24,6 @@ public class CentralDeAlgoritmos {
     static void cargarVectores(){
         for(int i = 0; i<vectorBase.length; i++){
             vectorBase[i] = random.nextInt(1, 200_000);
-
         }
 
         for(int i = 0; i<5; i++){
@@ -34,6 +33,7 @@ public class CentralDeAlgoritmos {
 
     static void iniciarAplicacion(){
 
+        gestiorDeSesiones.inicializar();
         cargarVectores();
         int opcion = 0;
 
@@ -44,13 +44,14 @@ public class CentralDeAlgoritmos {
             System.out.println("3. Ordenamiento de Inserción");
             System.out.println("4. Ordenamiento de Selección");
             System.out.println("5. Ordenamiento Quick Sort");
-            System.out.println("6. salir");
+            System.out.println("6. Ver resumen de sesiones");
+            System.out.println("7. salir");
 
-            opcion = pedirNumero("Ingrese uno de los Metodos de ordenamiento a ejecutar (1-6)", "Error: Número fuera de rango, ingrese un número valido (1-6)", 1, 6);
+            opcion = pedirNumero("Ingrese uno de los Metodos de ordenamiento a ejecutar (1-7)", "Error: Número fuera de rango, ingrese un número valido (1-7)", 1, 7);
 
             ejecutarSegunOpcion(opcion);
 
-        }while(opcion != 6);
+        }while(opcion != 7);
 
     }
 
@@ -76,7 +77,10 @@ public class CentralDeAlgoritmos {
                 List<Object> ordenamientoQuickSort = ordenarPorQuickSort();
                 mostrarEstadisticasDelAlgoritmo(ordenamientoQuickSort);
                 break;
-            case 6: 
+            case 6:
+                gestiorDeSesiones.mostrarResumenGeneral();
+                break;
+            case 7: 
                 System.out.println("\n\033[034mCerrando aplicacion...\033[0m");
                 break; 
         }
@@ -154,6 +158,8 @@ public class CentralDeAlgoritmos {
         estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
 
+        gestiorDeSesiones.guardarResultado("Burbuja Normal", intercambios, comparaciones, tiempoEnOrdenar);
+
         return estadisticas;
 
     }
@@ -198,6 +204,8 @@ public class CentralDeAlgoritmos {
         estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
 
+        gestiorDeSesiones.guardarResultado("Seleccion", intercambios, comparaciones, tiempoEnOrdenar);
+
         return estadisticas;
     }
 
@@ -222,6 +230,8 @@ public class CentralDeAlgoritmos {
         estadisticas.add(estadisticasVector[1]);
         estadisticas.add(estadisticasVector[0]);
         estadisticas.add(tiempoEnOrdenar);
+
+        gestiorDeSesiones.guardarResultado("Quick Sort", estadisticasVector[1], estadisticasVector[0], tiempoEnOrdenar);
 
         return estadisticas;
     }
@@ -299,6 +309,8 @@ public class CentralDeAlgoritmos {
         estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
 
+        gestiorDeSesiones.guardarResultado("Burbuja Mejorado", intercambios, comparaciones, tiempoEnOrdenar);
+
         return estadisticas;
 
     }
@@ -339,11 +351,10 @@ public class CentralDeAlgoritmos {
         estadisticas.add(comparaciones);
         estadisticas.add(tiempoEnOrdenar);
 
+        gestiorDeSesiones.guardarResultado("Insertion", intercambios, comparaciones, tiempoEnOrdenar);
 
         return estadisticas;
 
     }
-
-
     
 }

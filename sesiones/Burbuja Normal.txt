@@ -1,0 +1,6 @@
+Algoritmo: Burbuja Normal
+2026-10-04 17:53:22.912 | intercambios=2505667347 | comparaciones=4999950000 | tiempoMs=16069,74
+2026-10-04 17:54:57.364 | intercambios=2502098669 | comparaciones=4999950000 | tiempoMs=16043,45
+2026-10-04 17:56:29.279 | intercambios=2491701536 | comparaciones=4999950000 | tiempoMs=15997,46
+2026-10-04 17:57:39.424 | intercambios=2498526551 | comparaciones=4999950000 | tiempoMs=16083,70
+2026-10-04 17:59:27.933 | intercambios=2498653018 | comparaciones=4999950000 | tiempoMs=16309,27

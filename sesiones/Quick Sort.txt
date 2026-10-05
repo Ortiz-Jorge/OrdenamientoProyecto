@@ -1,0 +1,6 @@
+Algoritmo: Quick Sort
+2026-10-04 17:54:19.905 | intercambios=1020693 | comparaciones=1954289 | tiempoMs=85,45
+2026-10-04 17:55:57.058 | intercambios=1003135 | comparaciones=1949538 | tiempoMs=21,89
+2026-10-04 17:57:06.299 | intercambios=1065302 | comparaciones=1970601 | tiempoMs=23,95
+2026-10-04 17:58:33.347 | intercambios=1197410 | comparaciones=2131361 | tiempoMs=23,51
+2026-10-04 18:00:05.975 | intercambios=1035686 | comparaciones=1990974 | tiempoMs=23,04

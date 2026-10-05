@@ -1,0 +1,6 @@
+Algoritmo: Burbuja Mejorado
+2026-10-04 17:53:43.158 | intercambios=2505667347 | comparaciones=4999940955 | tiempoMs=15515,92
+2026-10-04 17:55:27.147 | intercambios=2502098669 | comparaciones=4999876464 | tiempoMs=15588,68
+2026-10-04 17:56:49.232 | intercambios=2491701536 | comparaciones=4999888925 | tiempoMs=15787,81
+2026-10-04 17:57:59.054 | intercambios=2498526551 | comparaciones=4999903029 | tiempoMs=15722,08
+2026-10-04 17:59:44.763 | intercambios=2498653018 | comparaciones=4999861169 | tiempoMs=15614,58

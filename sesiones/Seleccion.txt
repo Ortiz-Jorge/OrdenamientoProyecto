@@ -1,0 +1,6 @@
+Algoritmo: Seleccion
+2026-10-04 17:54:10.889 | intercambios=100000 | comparaciones=4999950000 | tiempoMs=4716,22
+2026-10-04 17:55:54.546 | intercambios=100000 | comparaciones=4999950000 | tiempoMs=4569,49
+2026-10-04 17:58:29.151 | intercambios=100000 | comparaciones=4999950000 | tiempoMs=4662,59
+2026-10-04 18:00:02.891 | intercambios=100000 | comparaciones=4999950000 | tiempoMs=5047,19
+2026-10-04 18:04:36.607 | intercambios=100000 | comparaciones=4999950000 | tiempoMs=4675.35

@@ -1,0 +1,6 @@
+Algoritmo: Insertion
+2026-10-04 17:53:59.829 | intercambios=2505667347 | comparaciones=2505767346 | tiempoMs=7358,91
+2026-10-04 17:55:46.503 | intercambios=2502098669 | comparaciones=2502198668 | tiempoMs=7283,26
+2026-10-04 17:57:00.652 | intercambios=2491701536 | comparaciones=2491801535 | tiempoMs=7278,73
+2026-10-04 17:58:19.709 | intercambios=2498526551 | comparaciones=2498626550 | tiempoMs=7250,42
+2026-10-04 17:59:54.855 | intercambios=2498653018 | comparaciones=2498753017 | tiempoMs=8334,78
